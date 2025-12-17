@@ -1,10 +1,9 @@
-
 import 'dart:async';
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
 
-import 'epiccash_bindings_generated.dart';
+import 'epiccash.g.dart';
 
 /// A very short-lived native function.
 ///
@@ -35,7 +34,7 @@ Future<int> sumAsync(int a, int b) async {
 
 const String _libName = 'epiccash';
 
-/// The dynamic library in which the symbols for [EpiccashBindings] can be found.
+/// The dynamic library in which the symbols for [Epiccash] can be found.
 final DynamicLibrary _dylib = () {
   if (Platform.isMacOS || Platform.isIOS) {
     return DynamicLibrary.open('$_libName.framework/$_libName');
@@ -50,8 +49,7 @@ final DynamicLibrary _dylib = () {
 }();
 
 /// The bindings to the native functions in [_dylib].
-final EpiccashBindings _bindings = EpiccashBindings(_dylib);
-
+final Epiccash _bindings = Epiccash(_dylib);
 
 /// A request to compute `sum`.
 ///

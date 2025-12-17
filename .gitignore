@@ -32,4 +32,5 @@ migrate_working_dir/
 /build/
 /coverage/
 
-rust/target/
+rust/target/*
+!rust/target/epiccash.h
